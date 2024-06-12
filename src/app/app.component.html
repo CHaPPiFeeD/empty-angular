@@ -7,10 +7,20 @@
     <label for="token">Token</label>
     <input id="token" formControlName="token" type="text">
   </div>
+  <div class="form-field">
+    <label for="language">Language</label>
+    <select formControlName="language" id="language">
+      <option value="en">English</option>
+      <option value="pt">Portuguese</option>
+      <option value="es">Spanish</option>
+      <option value="ja">Japanese</option>
+      <option value="hi">Hindi</option>
+    </select>
+  </div>
 </form>
 
-@if (form.valid) {
+@if (form.valid && reload) {
 <div class="jackpot-container">
-  <gos-jackpot-widget [widgetId]="form.value.id" [jwt]="form.value.token" is-dev-env="true"></gos-jackpot-widget>
+  <gos-jackpot-widget [widgetId]="form.value.id" [jwt]="form.value.token" is-dev-env="true" [language]="form.value.language"></gos-jackpot-widget>
 </div>
 }
