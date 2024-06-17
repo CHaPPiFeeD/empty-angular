@@ -14,7 +14,7 @@ import { map } from 'rxjs';
 interface WidgetForm {
   id: FormControl<string | null>;
   token: FormControl<string | null>;
-  language: FormControl<string>;
+  language: FormControl<string | undefined>;
 }
 
 @Component({
@@ -30,7 +30,7 @@ export class AppComponent {
   form: FormGroup<WidgetForm> = this.formBuilder.group({
     id: new FormControl("", [Validators.required]),
     token: new FormControl("", [Validators.required]),
-    language: new FormControl("en", { nonNullable: true }),
+    language: new FormControl<string | undefined>(undefined, { nonNullable: true }),
   });
 
   reload = true;
