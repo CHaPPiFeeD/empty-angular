@@ -16,12 +16,23 @@
       <option value="es">Spanish</option>
       <option value="ja">Japanese</option>
       <option value="hi">Hindi</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="pl">Polska</option>
+      <option value="gr">Ελληνικά</option>
+      <option value="fi">Suomi</option>
+      <option value="no">Norsk</option>
+      <option value="it">Italiano</option>
+      <option value="dk">Dansk</option>
+      <option value="es">Español</option>
+      <option value="hu">Magyar</option>
     </select>
   </div>
 </form>
 
 @if (form.valid && reload) {
 <div class="jackpot-container">
-  <gos-jackpot-widget [widgetId]="form.value.id" [jwt]="form.value.token" is-dev-env="true" [language]="form.value.language"></gos-jackpot-widget>
+  <gos-jackpot-widget [widgetId]="form.value.id" [jwt]="form.value.token"
+    [language]="form.value.language"></gos-jackpot-widget>
 </div>
 }
