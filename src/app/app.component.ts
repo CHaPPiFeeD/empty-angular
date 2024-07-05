@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
+import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import {
   FormBuilder,
   FormControl,
@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { map } from 'rxjs';
+import { map } from "rxjs";
 
 interface WidgetForm {
   id: FormControl<string | null>;
@@ -26,20 +26,22 @@ interface WidgetForm {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
-  title = "empty-angular";
+  title = "gos-widget-demo";
   form: FormGroup<WidgetForm> = this.formBuilder.group({
     id: new FormControl("", [Validators.required]),
     token: new FormControl("", [Validators.required]),
-    language: new FormControl<string | undefined>(undefined, { nonNullable: true }),
+    language: new FormControl<string | undefined>(undefined, {
+      nonNullable: true,
+    }),
   });
 
   reload = true;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, route: ActivatedRoute) {
     this.form.valueChanges.subscribe(() => {
       this.reload = false;
 
-      setTimeout(() => this.reload = true);
-    })
+      setTimeout(() => (this.reload = true));
+    });
   }
 }
