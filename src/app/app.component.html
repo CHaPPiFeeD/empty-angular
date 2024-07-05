@@ -32,7 +32,7 @@
 
 @if (form.valid && reload) {
 <div class="jackpot-container">
-  <gos-jackpot-widget [widgetId]="form.value.id" [jwt]="form.value.token"
+  <gos-jackpot-widget is-dev-env="true" [widgetId]="form.value.id" [jwt]="form.value.token"
     [language]="form.value.language"></gos-jackpot-widget>
 </div>
 }
