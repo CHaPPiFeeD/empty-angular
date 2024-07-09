@@ -14,6 +14,7 @@ import { map } from "rxjs";
 interface WidgetForm {
   id: FormControl<string | null>;
   token: FormControl<string | null>;
+  session: FormControl<string | null>;
   language: FormControl<string | undefined>;
 }
 
@@ -29,7 +30,8 @@ export class AppComponent {
   title = "gos-widget-demo";
   form: FormGroup<WidgetForm> = this.formBuilder.group({
     id: new FormControl("", [Validators.required]),
-    token: new FormControl("", [Validators.required]),
+    token: new FormControl(""),
+    session: new FormControl(""),
     language: new FormControl<string | undefined>(undefined, {
       nonNullable: true,
     }),

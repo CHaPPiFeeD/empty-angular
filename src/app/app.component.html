@@ -8,6 +8,10 @@
     <input id="token" formControlName="token" type="text">
   </div>
   <div class="form-field">
+    <label for="session">Sessio</label>
+    <input id="session" formControlName="session" type="text">
+  </div>
+  <div class="form-field">
     <label for="language">Language</label>
     <select formControlName="language" id="language">
       <option [value]="undefined">Default</option>
@@ -33,6 +37,6 @@
 @if (form.valid && reload) {
 <div class="jackpot-container">
   <gos-jackpot-widget is-dev-env="true" [widgetId]="form.value.id" [jwt]="form.value.token"
-    [language]="form.value.language"></gos-jackpot-widget>
+    [session]="form.value.session" [language]="form.value.language"></gos-jackpot-widget>
 </div>
 }
