@@ -1,5 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CUSTOM_ELEMENTS_SCHEMA, Component, Inject } from "@angular/core";
+import { CommonModule, DOCUMENT } from "@angular/common";
 import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 import {
   FormBuilder,
@@ -9,13 +9,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { map } from "rxjs";
+import { map, merge } from "rxjs";
 
 interface WidgetForm {
   id: FormControl<string | null>;
   token: FormControl<string | null>;
   session: FormControl<string | null>;
   language: FormControl<string | undefined>;
+  mode: FormControl<string>;
 }
 
 @Component({
@@ -35,15 +36,27 @@ export class AppComponent {
     language: new FormControl<string | undefined>(undefined, {
       nonNullable: true,
     }),
+    mode: new FormControl<string>("light", { nonNullable: true }),
   });
 
   reload = true;
 
-  constructor(private formBuilder: FormBuilder, route: ActivatedRoute) {
-    this.form.valueChanges.subscribe(() => {
-      this.reload = false;
-
-      setTimeout(() => (this.reload = true));
+  constructor(private formBuilder: FormBuilder, route: ActivatedRoute, @Inject(DOCUMENT) document: Document) {
+    this.form.controls.mode.valueChanges.subscribe(value => {
+      document.body.classList.toggle('dark');
     });
+
+    merge(
+      this.form.controls.id.valueChanges,
+      this.form.controls.token.valueChanges,
+      this.form.controls.session.valueChanges,
+      this.form.controls.language.valueChanges,
+    ).subscribe(() => this.reloadWidget());
+  }
+
+  public reloadWidget(): void {
+    this.reload = false;
+
+    setTimeout(() => (this.reload = true));
   }
 }
