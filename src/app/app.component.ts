@@ -9,12 +9,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { map, merge } from "rxjs";
+import { debounceTime, map, merge } from "rxjs";
 
 interface WidgetForm {
   id: FormControl<string | null>;
   token: FormControl<string | null>;
   session: FormControl<string | null>;
+  currency: FormControl<string | null>;
   language: FormControl<string | undefined>;
   mode: FormControl<string>;
 }
@@ -33,6 +34,7 @@ export class AppComponent {
     id: new FormControl("", [Validators.required]),
     token: new FormControl(""),
     session: new FormControl(""),
+    currency: new FormControl("EUR"),
     language: new FormControl<string | undefined>(undefined, {
       nonNullable: true,
     }),
@@ -50,8 +52,9 @@ export class AppComponent {
       this.form.controls.id.valueChanges,
       this.form.controls.token.valueChanges,
       this.form.controls.session.valueChanges,
+      this.form.controls.currency.valueChanges,
       this.form.controls.language.valueChanges,
-    ).subscribe(() => this.reloadWidget());
+    ).pipe(debounceTime(500)).subscribe(() => this.reloadWidget());
   }
 
   public reloadWidget(): void {
