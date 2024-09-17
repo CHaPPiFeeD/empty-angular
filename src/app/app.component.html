@@ -50,7 +50,11 @@
 
 @if (form.valid && reload) {
 <div class="jackpot-container">
-  <gos-jackpot-widget is-dev-env="true" [widgetId]="form.value.id" [jwt]="form.value.token"
-    [session]="form.value.session" [language]="form.value.language"></gos-jackpot-widget>
+  <gos-jackpot-widget is-dev-env="true"
+    [widgetId]="form.value.id"
+    [jwt]="form.value.token"
+    [session]="form.value.session"
+    [language]="form.value.language"
+    [widgetCurrency]="form.value.currency"></gos-jackpot-widget>
 </div>
 }
