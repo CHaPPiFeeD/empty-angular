@@ -18,6 +18,7 @@ interface WidgetForm {
   currency: FormControl<string | null>;
   language: FormControl<string | undefined>;
   mode: FormControl<string>;
+  isDevEnv: FormControl<boolean>;
 }
 
 @Component({
@@ -39,6 +40,7 @@ export class AppComponent {
       nonNullable: true,
     }),
     mode: new FormControl<string>("light", { nonNullable: true }),
+    isDevEnv: new FormControl<boolean>(true, { nonNullable: true }),
   });
 
   reload = true;
@@ -54,6 +56,7 @@ export class AppComponent {
       this.form.controls.session.valueChanges,
       this.form.controls.currency.valueChanges,
       this.form.controls.language.valueChanges,
+      this.form.controls.isDevEnv.valueChanges,
     ).pipe(debounceTime(500)).subscribe(() => this.reloadWidget());
   }
 

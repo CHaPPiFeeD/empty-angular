@@ -44,13 +44,30 @@
     </select>
   </div>
   <div class="form-field">
+    <label for="isDevEnv" class="switch">
+      <input type="checkbox" formControlName="isDevEnv" id="isDevEnv">
+      <span>Development</span>
+    </label>
+  </div>
+  <div class="form-field">
     <button (click)="reloadWidget()">Reload</button>
   </div>
 </form>
 
 @if (form.valid && reload) {
 <div class="jackpot-container">
-  <gos-jackpot-widget is-dev-env="true"
+  <gos-jackpot-widget
+    *ngIf="form.value.isDevEnv"
+    is-dev-env="true"
+    [widgetId]="form.value.id"
+    [jwt]="form.value.token"
+    [session]="form.value.session"
+    [language]="form.value.language"
+    [widgetCurrency]="form.value.currency"></gos-jackpot-widget>
+    
+  <gos-jackpot-widget
+    *ngIf="!form.value.isDevEnv"
+    is-dev-env="false"
     [widgetId]="form.value.id"
     [jwt]="form.value.token"
     [session]="form.value.session"
