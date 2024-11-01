@@ -1,19 +1,19 @@
 <form [formGroup]="form">
   <div class="form-field">
     <label for="id">Widget id</label>
-    <input formControlName="id" id="id" type="text">
+    <input formControlName="id" id="id" type="text" />
   </div>
   <div class="form-field">
     <label for="token">Token</label>
-    <input id="token" formControlName="token" type="text">
+    <input id="token" formControlName="token" type="text" />
   </div>
   <div class="form-field">
-    <label for="session">Sessio</label>
-    <input id="session" formControlName="session" type="text">
+    <label for="session">Session</label>
+    <input id="session" formControlName="session" type="text" />
   </div>
   <div class="form-field">
     <label>Currency</label>
-    <input id="cyrrency" formControlName="currency" type="text">
+    <input id="cyrrency" formControlName="currency" type="text" />
   </div>
   <div class="form-field">
     <label for="language">Language</label>
@@ -34,6 +34,7 @@
       <option value="dk">Dansk</option>
       <option value="es">Español</option>
       <option value="hu">Magyar</option>
+      <option value="sl">Slovenian</option>
     </select>
   </div>
   <div class="form-field">
@@ -45,9 +46,17 @@
   </div>
   <div class="form-field">
     <label for="isDevEnv" class="switch">
-      <input type="checkbox" formControlName="isDevEnv" id="isDevEnv">
+      <input type="checkbox" formControlName="isDevEnv" id="isDevEnv" />
       <span>Development</span>
     </label>
+  </div>
+  <div class="form-field">
+    <label for="gameId">Game ID</label>
+    <input id="gameId" formControlName="gameId" type="text" />
+  </div>
+  <div class="form-field">
+    <label for="providerId">Provider ID</label>
+    <input id="providerId" formControlName="providerId" type="text" />
   </div>
   <div class="form-field">
     <button (click)="reloadWidget()">Reload</button>
@@ -62,16 +71,22 @@
     [widgetId]="form.value.id"
     [jwt]="form.value.token"
     [session]="form.value.session"
+    [gameId]="form.value.gameId"
+    [providerId]="form.value.providerId"
     [language]="form.value.language"
-    [widgetCurrency]="form.value.currency"></gos-jackpot-widget>
-    
+    [widgetCurrency]="form.value.currency"
+  ></gos-jackpot-widget>
+
   <gos-jackpot-widget
     *ngIf="!form.value.isDevEnv"
     is-dev-env="false"
     [widgetId]="form.value.id"
     [jwt]="form.value.token"
     [session]="form.value.session"
+    [gameId]="form.value.gameId"
+    [providerId]="form.value.providerId"
     [language]="form.value.language"
-    [widgetCurrency]="form.value.currency"></gos-jackpot-widget>
+    [widgetCurrency]="form.value.currency"
+  ></gos-jackpot-widget>
 </div>
 }
