@@ -67,7 +67,7 @@
 <div class="jackpot-container">
   <gos-jackpot-widget
     *ngIf="form.value.isDevEnv"
-    is-dev-env="true"
+    [isDevEnv]="true"
     [widgetId]="form.value.id"
     [jwt]="form.value.token"
     [session]="form.value.session"
@@ -79,7 +79,7 @@
 
   <gos-jackpot-widget
     *ngIf="!form.value.isDevEnv"
-    is-dev-env="false"
+    [isDevEnv]="false"
     [widgetId]="form.value.id"
     [jwt]="form.value.token"
     [session]="form.value.session"
