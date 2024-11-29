@@ -63,7 +63,6 @@
   </div>
 </form>
 
-@if (form.valid && reload) {
 <div class="jackpot-container">
   <gos-jackpot-widget
     *ngIf="form.value.isDevEnv"
@@ -89,4 +88,3 @@
     [widgetCurrency]="form.value.currency"
   ></gos-jackpot-widget>
 </div>
-}
